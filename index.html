@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>E-Voting OSIS</title>
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<header>
+  <div class="brand"><div class="logo">OSIS</div><div><b>E-VOTING</b><small>Pemilihan Ketua OSIS</small></div></div>
+  <nav><button onclick="show('home')">Beranda</button><button onclick="show('vote')">Voting</button><button onclick="show('admin')">Admin</button></nav>
+</header>
+
+<main>
+<section id="home" class="page active hero">
+  <div>
+    <span class="pill">PEMILIHAN OSIS 2026</span>
+    <h1>Suaramu,<br><span>Menentukan Masa Depan.</span></h1>
+    <p>Pilih calon Ketua OSIS sesuai hati nurani. Satu siswa, satu suara.</p>
+    <button class="primary" onclick="show('vote')">Mulai Memilih →</button>
+  </div>
+  <div class="hero-card"><div class="big">🗳️</div><h3>E-Voting OSIS</h3><p>Aman • Cepat • Transparan</p></div>
+</section>
+
+<section id="vote" class="page">
+  <div id="loginBox" class="card narrow">
+    <h2>Login Pemilih</h2><p>Masukkan NIS untuk memulai pemilihan.</p>
+    <input id="nis" placeholder="Contoh: 1001">
+    <button class="primary full" onclick="loginVoter()">Masuk & Pilih</button>
+    <div id="loginMsg" class="msg"></div>
+  </div>
+  <div id="candidateBox" hidden>
+    <div class="section-title"><span class="pill">PEMILIHAN</span><h2>Pilih Kandidat Ketua OSIS</h2><p id="welcome"></p></div>
+    <div id="candidates" class="grid"></div>
+  </div>
+</section>
+
+<section id="admin" class="page">
+  <div id="adminLogin" class="card narrow">
+    <h2>Login Admin</h2><p>Kelola kandidat, pemilih, dan hasil voting.</p>
+    <input id="adminUser" placeholder="Username">
+    <input id="adminPass" type="password" placeholder="Password">
+    <button class="primary full" onclick="adminLogin()">Login Admin</button>
+    <div id="adminMsg" class="msg"></div>
+  </div>
+  <div id="dashboard" hidden>
+    <div class="dash-head"><div><span class="pill">ADMIN</span><h2>Dashboard E-Voting</h2></div><button onclick="adminLogout()">Keluar</button></div>
+    <div class="stats">
+      <div class="stat"><b id="sTotal">0</b><span>Total Pemilih</span></div>
+      <div class="stat"><b id="sVoted">0</b><span>Sudah Memilih</span></div>
+      <div class="stat"><b id="sNot">0</b><span>Belum Memilih</span></div>
+    </div>
+    <div class="admin-grid">
+      <div class="card"><h3>Hasil Sementara</h3><div id="results"></div></div>
+      <div class="card">
+        <h3>Tambah Pemilih</h3>
+        <input id="newNis" placeholder="NIS"><input id="newName" placeholder="Nama siswa">
+        <button class="primary full" onclick="addVoter()">Tambah</button>
+      </div>
+      <div class="card">
+        <h3>Tambah Kandidat</h3>
+        <input id="cNum" placeholder="Nomor">
+        <input id="cName" placeholder="Nama kandidat">
+        <input id="cClass" placeholder="Kelas">
+        <textarea id="cVision" placeholder="Visi"></textarea>
+        <textarea id="cMission" placeholder="Misi"></textarea>
+        <button class="primary full" onclick="addCandidate()">Tambah Kandidat</button>
+      </div>
+      <div class="card"><h3>Data Pemilih</h3><div id="voters"></div></div>
+    </div>
+    <button class="danger" onclick="resetVoting()">⚠ Reset Semua Suara</button>
+  </div>
+</section>
+</main>
+
+<div id="modal" class="modal" hidden>
+  <div class="modal-box"><button class="close" onclick="closeModal()">×</button><h2>Konfirmasi Pilihan</h2><p id="confirmText"></p><button class="primary full" onclick="submitVote()">Ya, Saya Yakin</button><button class="secondary full" onclick="closeModal()">Kembali</button></div>
+</div>
+<footer>© 2026 E-Voting OSIS • Demo aplikasi sekolah</footer>
+<script src="/app.js"></script>
+</body>
+</html>
